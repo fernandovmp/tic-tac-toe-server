@@ -3,7 +3,7 @@ const routes = require('./routes');
 const moongose = require('mongoose');
 const cors = require('cors');
 require('dotenv/config');
-
+const cookieParser = require('cookie-parser');
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -16,6 +16,7 @@ moongose.connect(connectionString,
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use(routes);
 
 app.listen(port, () => {
