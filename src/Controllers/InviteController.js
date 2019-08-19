@@ -5,7 +5,9 @@ const Invite = require('../models/Invite');
 module.exports = {
     async index(req, res) {
         try {
-            const user = await User.findById(req.params.id);
+            const user = await User.findById(req.userId).populate({ path: 'invites', populate: [
+                { path: 'sender', select: '-password -invites' }, { path: 'receptor', select:'-password -invites' }
+            ]});
             if(!user) {
                 throw { 
                     userDoestExists: true
@@ -28,7 +30,7 @@ module.exports = {
     async store(req, res) {
         try {
             const targetUser = await User.findById(req.params.id);
-            const user = await User.findById(req.headers.id);
+            const user = await User.findById(req.userId);
             
             if(!targetUser) {
                 throw {
@@ -64,7 +66,7 @@ module.exports = {
     },
     async destroy(req, res) {
         try {
-            const user = await User.findById(req.params.id);
+            const user = await User.findById(req.userId);
             
             if(!user) {
                 throw {
