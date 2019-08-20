@@ -1,6 +1,34 @@
 # Tic Tac Toe Server
 Aplicação de servidor para Login de usuário e convites de partidas para o projeto: [Tic Tac Toe Web](https://github.com/fernandovmp/tic-tac-toe-web).
 
+# Instalação
+1. Baixe e instale o Node: https://nodejs.org
+2. Clone esse repositório: \
+`git clonehttps://github.com/fernandovmp/tic-tac-toe-server.git`
+3. Instale o yarn: https://yarnpkg.com/lang/pt-br/docs/install/
+4. Instale as dependências do projeto: `yarn install`
+5. Crie uma conta no MongoDB: 
+6. Crie um cluster no MongoDB Atlas (ou outro de sua preferência): https://www.mongodb.com/cloud/atlas
+7. Preencha as [varáveis de ambiente](#variáveis-de-ambiente)
+8. Inicie o ambiente de desenvolvimento: `yarn start`
+
+# Desenvolvimento
+## Variáveis de ambiente
+Copie as informações do arquivo [.env.exemple](.env.exemple) para um arquivo `.env` \
+O arquivo precisa conter as seguintes informações:
+ - `PORT` porta que o servidor irá rodar
+ - `SECRET` segredo do json web token
+ - `CONNECTION_STRING` string de conexão ao banco de dados. \
+
+Exemplo:
+```
+PORT=3001
+
+SECRET=mySecret
+
+CONNECTION_STRING=myConnectionString
+```
+
 # Rotas
 
 - [Cadastrar usuário](#cadastrar-usuário)
