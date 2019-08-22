@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv/config');
 
 module.exports = function verifyJwt(req, res, next) {
-    const token = req.cookies['access-token'];//req.headers['x-access-token'];
+    const token = req.cookies['access-token'];
     if(!token) {
         res.status(401);
         return res.json({
@@ -19,7 +19,6 @@ module.exports = function verifyJwt(req, res, next) {
                 message: 'Failed to authenticate token.' 
             });
         }
-
         req.userId = decoded.id;
         next();
     });
