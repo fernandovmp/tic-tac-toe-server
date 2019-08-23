@@ -10,6 +10,9 @@ const InviteSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
+    },
+    new: {
+        type: Boolean
     }
 }, {
     timestamps: true
