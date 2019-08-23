@@ -45,7 +45,8 @@ module.exports = {
             
             const invite = await Invite.create({
                 sender: user._id,
-                receptor: targetUser._id
+                receptor: targetUser._id,
+                new: true
             });
             targetUser.invites.push(invite._id);
             await targetUser.save();
@@ -66,6 +67,25 @@ module.exports = {
                 return res.json(error);
             }
             
+            return res.json();
+        }
+    },
+    async update(req, res) {
+        try {
+            const { inviteId } = req.params;
+            const invite = await Invite.findById(inviteId);
+            
+            invite.new = false;
+            await invite.save();
+            return res.json();
+        } catch (error) {
+            res.status(204);
+            console.log(error);
+            const { userDoestExists } = error;
+            if (userDoestExists) {
+                return res.json(error);
+            }
+
             return res.json();
         }
     },

@@ -14,6 +14,7 @@ routes.post('/login', Login.login);
 routes.post('/users', UserController.store);
 routes.post('/users/:id/invites', verifyJwt, InviteController.store);
 routes.patch('/users/:id', verifyJwt, UserController.update);
+routes.patch('/invites/:inviteId', verifyJwt, InviteController.update);
 routes.delete('/invites/:inviteId', verifyJwt, InviteController.destroy);
 
 module.exports = routes;
