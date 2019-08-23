@@ -28,6 +28,16 @@ module.exports = {
             return res.json();
         }
     },
+    async indexSelf(req, res) {
+        try {
+            const id = req.userId;
+            const user = await User.findById(id).select('-password-invites');
+            return res.json(user);
+        } catch (error) {
+            res.status(401);
+            return res.json();
+        }
+    },
     async store(req, res) {
         const { username, password } = req.body;
 

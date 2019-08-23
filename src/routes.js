@@ -8,6 +8,7 @@ const routes = express.Router();
 
 routes.get('/users', verifyJwt, UserController.index);
 routes.get('/users/:id', verifyJwt, UserController.indexById);
+routes.get('/login/user', verifyJwt, UserController.indexSelf);
 routes.get('/invites', verifyJwt, InviteController.index);
 routes.post('/login', Login.login);
 routes.post('/users', UserController.store);
