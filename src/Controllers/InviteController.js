@@ -49,7 +49,12 @@ module.exports = {
             });
             targetUser.invites.push(invite._id);
             await targetUser.save();
-
+            const targetSocket = req.connectedUsers[targetUser._id];
+            if(targetSocket) {
+                req.io.to(targetSocket).emit('invite');
+            }
+            
+            
             console.log(`${user.username} invites ${targetUser.username}`);
             res.status(201);
             return res.json(invite);
