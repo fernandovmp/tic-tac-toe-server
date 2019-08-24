@@ -52,7 +52,10 @@ module.exports = {
         
         let user = await User.create({
             username,
-            password: cryptPassword
+            password: cryptPassword,
+            wonMatches: 0,
+            tiedMatches: 0,
+            lostMatches: 0
         });
         user = await User.findById(user._id).select('-password');
         console.log(`${username} created!`)
