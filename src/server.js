@@ -4,6 +4,7 @@ const moongose = require('mongoose');
 const cors = require('cors');
 require('dotenv/config');
 const cookieParser = require('cookie-parser');
+const TicTacToe = require('./Controllers/TicTacToeController');
 
 const app = express();
 
@@ -15,8 +16,10 @@ const io = require('socket.io')(server);
 io.on('connection', socket => {
    const { user } = socket.handshake.query;
    connectedUsers[user] = socket.id;
+   socket.on('startPlay', gameState => {
+      TicTacToe.startMatch(gameState, io, connectedUsers);
+   });
 });
-
 const port = process.env.PORT || 3001;
 const connectionString = process.env.CONNECTION_STRING;
 
