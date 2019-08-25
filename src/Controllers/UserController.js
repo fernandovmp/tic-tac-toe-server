@@ -31,7 +31,7 @@ module.exports = {
     async indexSelf(req, res) {
         try {
             const id = req.userId;
-            const user = await User.findById(id).select('-password-invites');
+            const user = await User.findById(id).select('-password -invites');
             return res.json(user);
         } catch (error) {
             res.status(401);
