@@ -33,6 +33,7 @@ CONNECTION_STRING=myConnectionString
 
 - [Cadastrar usuário](#cadastrar-usuário)
 - [LogIn](#login)
+- [Informações do usuário logado](#informações-do-usuário-logado)
 - [Listar usuários](#listar-usuários)
 - [Listar usuário por id](#listar-usuário-por-id)
 - [Atualizar informação de usuário](#atualizar-informação-de-usuário)
@@ -87,6 +88,34 @@ CONNECTION_STRING=myConnectionString
 - **Resposta de erro**
   - **Código:** 401 \
   **Conteúdo:** Nenhum.
+
+## Informações do usuário logado
+- **URL** \
+` /login/user `
+- **Método** \
+`GET`
+- **Dados da requisição** \
+Nenhum. \
+Usa um web token para verificar autorização. [Rota para receber token](#login).
+- **Resposta em caso de sucesso** 
+  - **Código:** 200 \
+  **Conteúdo:** 
+  ```
+  {
+    "_id": "5d606bc1b3329f40508662ae",
+    "username": "userB",
+    "createdAt": "2019-08-23T22:42:09.310Z",
+    "updatedAt": "2019-08-25T20:38:44.548Z",
+    "__v": 6,
+    "lostMatches": 9,
+    "tiedMatches": 1,
+    "wonMatches": 5
+  }
+  ```
+- **Resposta de erro**
+  - **Código:** 401 \
+  **Conteúdo:** Nenhum.
+
 
 ## Listar usuários
 - **URL** \
