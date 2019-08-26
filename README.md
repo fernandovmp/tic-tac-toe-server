@@ -188,7 +188,7 @@ Usa um web token para verificar autorização. [Rota para receber token](#login)
   **Conteúdo:** `{ "auth": false }`
   
   - **Código:** 204 \
-  **Conteúdo:** `{ "userDoesntExists": true }`
+  **Conteúdo:** Nenhum.
   
 ## Atualizar informação de usuário
 - **URL** \
@@ -215,7 +215,7 @@ Usa um web token para verificar autorização. [Rota para receber token](#login)
   **Conteúdo:** `{ "auth": false }`
   
   - **Código:** 204 \
-  **Conteúdo:** `{ "userDoesntExists": true }`
+  **Conteúdo:** Nenhum.
   
 ## Listar convites
 - **URL** \
