@@ -9,20 +9,12 @@ module.exports = {
                 { path: 'sender', select: '-password -invites' }, { path: 'receptor', select:'-password -invites' }
             ]});
             if(!user) {
-                throw { 
-                    userDoestExists: true
-                };
+                throw new Error();
             }
             const { invites } = user;
             return res.json(invites);
         } catch (error) {
             res.status(204);
-            
-            const { userDoestExists } = error;
-            if (userDoestExists) {
-                return res.json(error);
-            }
-            
             return res.json();
         }
        
@@ -33,14 +25,10 @@ module.exports = {
             const user = await User.findById(req.userId);
             
             if(!targetUser) {
-                throw {
-                    receptorDoestExists: true
-                };
+                throw new Error();
             }
             if(!user) {
-                throw {
-                    senderDoestExists: true
-                };
+                throw new Error();
             }
             
             const invite = await Invite.create({
@@ -61,12 +49,6 @@ module.exports = {
             return res.json(invite);
         } catch (error) {
             res.status(204);
-            
-            const { receptorDoestExists, senderDoestExists } = error;
-            if(receptorDoestExists || senderDoestExists) {
-                return res.json(error);
-            }
-            
             return res.json();
         }
     },
@@ -74,18 +56,14 @@ module.exports = {
         try {
             const { inviteId } = req.params;
             const invite = await Invite.findById(inviteId);
-            
+            if(!invite) {
+                throw new Error();
+            }
             invite.new = false;
             await invite.save();
             return res.json();
         } catch (error) {
             res.status(204);
-            console.log(error);
-            const { userDoestExists } = error;
-            if (userDoestExists) {
-                return res.json(error);
-            }
-
             return res.json();
         }
     },
@@ -94,9 +72,7 @@ module.exports = {
             const user = await User.findById(req.userId);
             
             if(!user) {
-                throw {
-                    userDoestExists: true
-                };
+                throw new Error();
             }
             
             const { inviteId } = req.params;
@@ -111,12 +87,6 @@ module.exports = {
             return res.json();
         } catch (error) {
             res.status(204);
-            
-            const { userDoestExists } = error;
-            if (userDoestExists) {
-                return res.json(error);
-            }
-            
             return res.json();
         }
         

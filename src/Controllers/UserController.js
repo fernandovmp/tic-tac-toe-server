@@ -12,19 +12,11 @@ module.exports = {
             const { id } = req.params;
             const user = await User.findById(id);
             if (!user) {
-                throw {
-                    userDoestExists: true
-                };
+                throw new Error();
             }
             return res.json(user);
         } catch (error) {
             res.status(204);
-            
-            const { userDoestExists } = error;
-            if (userDoestExists) {
-                return res.json(error);
-            }
-            
             return res.json();
         }
     },
@@ -63,37 +55,27 @@ module.exports = {
         return res.json(user);
     },
     async update(req, res) {
-        const { wonMatches, tiedMatches, lostMatches } = req.body;
-        let user = undefined;
         try {
-            user = await User.findById(req.params.id);
+            const { wonMatches, tiedMatches, lostMatches } = req.body;
+            const user = await User.findById(req.params.id);
             if (!user) {
-                throw {
-                    userDoestExists: true
-                };
+                throw new Error();
             }
+            if (wonMatches !== undefined) {
+                user.wonMatches = wonMatches;
+            }
+            if (tiedMatches !== undefined) {
+                user.tiedMatches = tiedMatches;
+            }
+            if (lostMatches !== undefined) {
+                user.lostMatches = lostMatches;
+            }
+            await user.save();
+            console.log(`${user.username} updated`);
+            return res.json();
         } catch (error) {
             res.status(204);
-            
-            const { userDoestExists } = error;
-            if (userDoestExists) {
-                return res.json(error);
-            }
-            
             return res.json();
         }
-        
-        if(wonMatches !== undefined) {
-            user.wonMatches = wonMatches;
-        }
-        if(tiedMatches !== undefined) {
-            user.tiedMatches = tiedMatches;
-        }
-        if(lostMatches !== undefined) {
-            user.lostMatches = lostMatches;
-        }
-        await user.save();
-        console.log(`${user.username} updated`);
-        return res.json();
     }
 }
