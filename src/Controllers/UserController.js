@@ -10,7 +10,7 @@ module.exports = {
     async indexById(req, res) {
         try {
             const { id } = req.params;
-            const user = await User.findById(id);
+            const user = await User.findById(id).select('-password');
             if (!user) {
                 throw new Error();
             }
