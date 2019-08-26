@@ -13,6 +13,11 @@ const InviteSchema = new Schema({
     },
     new: {
         type: Boolean
+    },
+    expire_at: {
+        type: Date, 
+        default: Date.now, 
+        expires: 86400
     }
 }, {
     timestamps: true
