@@ -1,8 +1,11 @@
-
+const Invite = require('../models/Invite');
 
 module.exports = {
-    startMatch: function (gameState, io, connectedUsers) {
+    startMatch: async function (gameState, io, connectedUsers) {
         const [player1, player2] = gameState.players;
+        const validInvite = await this.checkInvite(gameState.invite);
+        if(!validInvite) return;
+        this.deleteInvite(gameState.invite);
         if (connectedUsers[player1]) {
             io.to(connectedUsers[player1]).emit('startPlay', gameState);
             io.to(connectedUsers[player1]).connected[connectedUsers[player1]].on('makePlay', newState => {
@@ -29,5 +32,19 @@ module.exports = {
             io.to(connectedUsers[player2]).emit('makePlay', newState);
         }
         
+    },
+    async deleteInvite(inviteId) {
+        await Invite.deleteOne({ _id: inviteId });
+    },
+    async checkInvite(inviteId) {
+        try {
+            const invite = await Invite.findById(inviteId);
+            if(!invite) {
+                throw new Error();
+            }
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 }
