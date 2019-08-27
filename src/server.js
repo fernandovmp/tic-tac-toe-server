@@ -16,8 +16,8 @@ const io = require('socket.io')(server);
 io.on('connection', socket => {
    const { user } = socket.handshake.query;
    connectedUsers[user] = socket.id;
-   socket.on('startPlay', gameState => {
-      TicTacToe.startMatch(gameState, io, connectedUsers);
+   socket.on('startPlay', inviteId => {
+      TicTacToe.startMatch(inviteId, io, connectedUsers);
    });
 });
 const port = process.env.PORT || 3001;
