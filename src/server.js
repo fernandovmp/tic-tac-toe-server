@@ -21,6 +21,7 @@ io.on('connection', socket => {
    });
 });
 const port = process.env.PORT || 3001;
+const corsOrigin = process.env.CORS_ORIGIN;
 const connectionString = process.env.CONNECTION_STRING;
 
 moongose.connect(connectionString,
@@ -34,7 +35,7 @@ app.use((req, res, next) => {
    next();
 });
 app.use(cors({
-   origin: 'http://localhost:3000',
+   origin: corsOrigin,
    credentials: true
 }));
 app.use(express.json());
