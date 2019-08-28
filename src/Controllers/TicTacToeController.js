@@ -12,8 +12,7 @@ module.exports = {
         const gameState = defaultGameState;
         gameState.currentSymbol = 0;
         gameState.players = [player1, player2];
-        
-        if (connectedUsers[player1]) {
+        if (io.to(connectedUsers[player1]).connected[connectedUsers[player1]]) {
             io.to(connectedUsers[player1]).emit('startPlay', gameState);
             io.to(connectedUsers[player1]).connected[connectedUsers[player1]].on('makePlay', newState => {
                 this.makePlay(newState, io, connectedUsers)
