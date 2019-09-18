@@ -13,7 +13,7 @@ Este projeto é parte do [Tic Tac Toe Web](https://github.com/fernandovmp/tic-ta
 # Instalação
 1. Baixe e instale o Node: https://nodejs.org
 2. Clone esse repositório: \
-`git clonehttps://github.com/fernandovmp/tic-tac-toe-server.git`
+`git clone https://github.com/fernandovmp/tic-tac-toe-server.git`
 3. Instale o yarn: https://yarnpkg.com/lang/pt-br/docs/install/
 4. Instale as dependências do projeto: `yarn install`
 5. Crie uma conta no MongoDB: 
