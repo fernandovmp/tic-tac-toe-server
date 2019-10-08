@@ -16,10 +16,9 @@ Este projeto é parte do [Tic Tac Toe Web](https://github.com/fernandovmp/tic-ta
 `git clone https://github.com/fernandovmp/tic-tac-toe-server.git`
 3. Instale o yarn: https://yarnpkg.com/lang/pt-br/docs/install/
 4. Instale as dependências do projeto: `yarn install`
-5. Crie uma conta no MongoDB: 
-6. Crie um cluster no MongoDB Atlas (ou outro de sua preferência): https://www.mongodb.com/cloud/atlas
-7. Preencha as [varáveis de ambiente](#variáveis-de-ambiente)
-8. Inicie o ambiente de desenvolvimento: `yarn start`
+5. Prepare o banco de dados mongo
+6. Preencha as [varáveis de ambiente](#variáveis-de-ambiente)
+7. Inicie o ambiente de desenvolvimento: `yarn start`
 
 # Desenvolvimento
 ## Variáveis de ambiente
